@@ -1,0 +1,1163 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f97316">
+<title>Menú Digital</title>
+
+<style>
+:root {
+  --orange: #f97316;
+  --orange2: #fb923c;
+  --gold: #fbbf24;
+  --ink: #21140d;
+  --cream: #fff8ef;
+  --muted: #806c5d;
+  --line: #f2dfca;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 10% 0%, #ffedd5 0, transparent 34%),
+    linear-gradient(145deg, #fffaf4, #fff1df);
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 20px 30px;
+  background: linear-gradient(
+    125deg,
+    #9a3412 0%,
+    #ea580c 42%,
+    #fb923c 100%
+  );
+  color: white;
+  border-radius: 0 0 34px 34px;
+  box-shadow: 0 18px 45px #c2410c44;
+}
+
+.hero:before,
+.hero:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.hero:before {
+  width: 240px;
+  height: 240px;
+  right: -65px;
+  top: -100px;
+  background: #fed7aa33;
+}
+
+.hero:after {
+  width: 170px;
+  height: 170px;
+  left: -70px;
+  bottom: -105px;
+  background: #fff7ed22;
+}
+
+.hero-inner {
+  max-width: 1050px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffedd5;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 8vw, 62px);
+  line-height: .98;
+  letter-spacing: -2px;
+  margin: 12px 0 10px;
+}
+
+.hero p {
+  margin: 0;
+  color: #ffedd5;
+  font-size: 14px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 23px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  border: 1px solid #ffffff66;
+  border-radius: 99px;
+  padding: 10px 15px;
+  background: #ffffff18;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* CONTENEDOR */
+
+.wrap {
+  max-width: 1050px;
+  margin: auto;
+  padding: 22px 16px 110px;
+}
+
+/* NAVEGACIÓN */
+
+.sticky-nav {
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  overflow: auto;
+  padding: 9px;
+  margin: 0 -4px 20px;
+  background: #fffaf0d9;
+  border: 1px solid #f3dfc8;
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 25px #78350f12;
+  scrollbar-width: none;
+}
+
+.navbtn {
+  white-space: nowrap;
+  border: 0;
+  background: transparent;
+  color: #80502e;
+  padding: 10px 13px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.navbtn.active,
+.navbtn:hover {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: white;
+  box-shadow: 0 5px 15px #f9731644;
+}
+
+/* SECCIONES */
+
+.section {
+  margin: 28px 0;
+  scroll-margin-top: 85px;
+  animation: rise .65s both;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 13px;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 23px;
+  letter-spacing: -.7px;
+}
+
+.section-head span {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+/* PRODUCTOS */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px;
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  box-shadow: 0 5px 16px #78350f0a;
+  transition: .22s;
+  min-width: 0;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  border-color: #fdba74;
+  box-shadow: 0 12px 25px #c2410c18;
+}
+
+.item-name {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.item-note {
+  font-size: 11px;
+  color: #987c68;
+  margin-top: 4px;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 900;
+  color: #c2410c;
+  white-space: nowrap;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.add {
+  border: 0;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  border-radius: 10px;
+  background: #fff0df;
+  color: #c2410c;
+  font-size: 19px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.add:hover {
+  background: var(--orange);
+  color: white;
+  transform: scale(1.08);
+}
+
+.subhead {
+  grid-column: 1/-1;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c2410c;
+  font-weight: 900;
+  padding: 12px 3px 0;
+}
+
+.note {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, #ffedd5, #fff7ed);
+  border: 1px solid #fed7aa;
+  color: #8a4316;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
+
+/* CARRITO */
+
+.cartbar {
+  position: fixed;
+  z-index: 10;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, calc(100% - 24px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 12px 18px;
+  border-radius: 19px;
+  background: #24160ff2;
+  color: white;
+  box-shadow: 0 15px 40px #43140755;
+  backdrop-filter: blur(16px);
+}
+
+.cart-info strong {
+  display: block;
+  font-size: 13px;
+}
+
+.cart-info small {
+  color: #fed7aa;
+  font-size: 11px;
+}
+
+.cart-total {
+  font-weight: 900;
+  color: #fdba74;
+}
+
+.cart-open {
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: white;
+  padding: 11px 16px;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+/* VENTANA DEL PEDIDO */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #1c100bb0;
+  display: none;
+  align-items: end;
+  justify-content: center;
+  padding: 12px;
+}
+
+.overlay.show {
+  display: flex;
+}
+
+.drawer {
+  width: min(560px, 100%);
+  max-height: 86vh;
+  overflow: auto;
+  background: #fffaf4;
+  border-radius: 25px;
+  padding: 21px;
+  box-shadow: 0 20px 60px #0005;
+  animation: slide .28s;
+}
+
+.drawer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.close {
+  border: 0;
+  background: #ffead5;
+  color: #9a3412;
+  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
+}
+
+.cart-lines {
+  margin: 16px 0;
+}
+
+.cart-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty button {
+  border: 0;
+  border-radius: 7px;
+  background: #ffead5;
+  color: #9a3412;
+  width: 24px;
+  height: 24px;
+  font-weight: 900;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 25px 0;
+}
+
+.totalrow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
+}
+
+.checkout {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 14px;
+  background: linear-gradient(110deg, #ea580c, #fb923c);
+  color: white;
+  font-weight: 900;
+}
+
+.clear {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #9a3412;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+footer {
+  text-align: center;
+  color: #9a806c;
+  font-size: 11px;
+  padding: 12px 0 0;
+}
+
+/* ANIMACIONES */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateY(25px);
+    opacity: .6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE */
+
+@media(min-width:700px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero {
+    padding: 48px 28px 42px;
+  }
+
+  .wrap {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media(max-width:390px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Sabor • tradición • antojo</div>
+
+    <h1>MENÚ<br>DELICIOSO.</h1>
+
+    <p>Hecho al momento. Elige tus favoritos y arma tu pedido.</p>
+
+    <div class="hero-actions">
+      <span class="pill">☀️ Desayunos</span>
+      <span class="pill">🍟 Snacks</span>
+      <span class="pill">🌮 Tacos</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="sticky-nav" id="nav">
+  <button class="navbtn active" data-target="desayunos">Desayunos</button>
+  <button class="navbtn" data-target="tacos-guisado">Tacos de guisado</button>
+  <button class="navbtn" data-target="snacks">Snacks</button>
+  <button class="navbtn" data-target="tacos">Tacos</button>
+</nav>
+
+<!-- DESAYUNOS -->
+
+<section class="section" id="desayunos">
+
+<div class="section-head">
+  <h2>☀️ Desayunos</h2>
+  <span>Para empezar bien</span>
+</div>
+
+<div class="grid">
+
+<div class="item" data-name="Chilaquiles" data-price="75">
+  <div class="item-name">Chilaquiles</div>
+  <div class="item-right">
+    <b class="price">$75</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Enchiladas (5 pzs)" data-price="90">
+  <div>
+    <div class="item-name">Enchiladas</div>
+    <div class="item-note">5 piezas</div>
+  </div>
+  <div class="item-right">
+    <b class="price">$90</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Tacos dorados de papa" data-price="55">
+  <div class="item-name">Tacos dorados de papa</div>
+  <div class="item-right">
+    <b class="price">$55</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Tacos dorados de pollo" data-price="70">
+  <div class="item-name">Tacos dorados de pollo</div>
+  <div class="item-right">
+    <b class="price">$70</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Pechuga completa" data-price="135">
+  <div>
+    <div class="item-name">Pechuga completa</div>
+    <div class="item-note">Arroz o pasta + ensalada + agua</div>
+  </div>
+  <div class="item-right">
+    <b class="price">$135</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Arroz individual" data-price="35">
+  <div>
+    <div class="item-name">Arroz</div>
+    <div class="item-note">Porción individual</div>
+  </div>
+  <div class="item-right">
+    <b class="price">$35</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Sopa" data-price="35">
+  <div class="item-name">Sopa</div>
+  <div class="item-right">
+    <b class="price">$35</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Espagueti" data-price="45">
+  <div class="item-name">Espagueti</div>
+  <div class="item-right">
+    <b class="price">$45</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Ensalada" data-price="45">
+  <div class="item-name">Ensalada</div>
+  <div class="item-right">
+    <b class="price">$45</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Guisado variado del día" data-price="135">
+  <div class="item-name">Guisado variado del día</div>
+  <div class="item-right">
+    <b class="price">$135</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+<div class="item" data-name="Segundo guisado variado" data-price="135">
+  <div>
+    <div class="item-name">Segundo guisado variado</div>
+    <div class="item-note">Según el día</div>
+  </div>
+  <div class="item-right">
+    <b class="price">$135</b>
+    <button class="add">+</button>
+  </div>
+</div>
+
+</div>
+
+<div class="note">
+  Los guisados pueden cambiar diariamente.
+  Consulta cuáles están disponibles.
+</div>
+
+</section>
+
+<!-- TACOS DE GUISADO -->
+
+<section class="section" id="tacos-guisado">
+
+<div class="section-head">
+  <h2>🌶️ Tacos de guisado</h2>
+  <span>$35 cada uno</span>
+</div>
+
+<div class="grid">
+
+<div class="item" data-name="Arroz rojo con pechuga de pollo" data-price="35">
+  <div class="item-name">Arroz rojo con pechuga de pollo</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Chicharrón en salsa" data-price="35">
+  <div class="item-name">Chicharrón en salsa</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Tinga de pollo" data-price="35">
+  <div class="item-name">Tinga de pollo</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Papas con chorizo" data-price="35">
+  <div class="item-name">Papas con chorizo</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Bistec en salsa con nopales" data-price="35">
+  <div class="item-name">Bistec en salsa con nopales</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Rajas poblanas con crema y elote" data-price="35">
+  <div class="item-name">Rajas poblanas con crema y elote</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+</div>
+</section>
+
+<!-- SNACKS -->
+
+<section class="section" id="snacks">
+
+<div class="section-head">
+  <h2>🍟 Snacks</h2>
+  <span>Algo para consentirte</span>
+</div>
+
+<div class="grid">
+
+<div class="subhead">Crepas</div>
+
+<div class="item" data-name="Crepa de Nutella" data-price="55">
+  <div class="item-name">Nutella</div>
+  <div class="item-right"><b class="price">$55</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Crepa de cajeta" data-price="55">
+  <div class="item-name">Cajeta</div>
+  <div class="item-right"><b class="price">$55</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Crepa de mermelada" data-price="55">
+  <div class="item-name">Mermeladas</div>
+  <div class="item-right"><b class="price">$55</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Crepa con fruta y Philadelphia" data-price="65">
+  <div class="item-name">Con fruta y Philadelphia</div>
+  <div class="item-right"><b class="price">$65</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Crepa de licor" data-price="75">
+  <div class="item-name">Licor</div>
+  <div class="item-right"><b class="price">$75</b><button class="add">+</button></div>
+</div>
+
+<div class="subhead">Mini hot cakes</div>
+
+<div class="item" data-name="Mini hot cakes con fruta" data-price="65">
+  <div class="item-name">Con fruta</div>
+  <div class="item-right"><b class="price">$65</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Mini hot cakes de Nutella" data-price="55">
+  <div class="item-name">Nutella</div>
+  <div class="item-right"><b class="price">$55</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Mini hot cakes especiales" data-price="75">
+  <div class="item-name">Especial</div>
+  <div class="item-right"><b class="price">$75</b><button class="add">+</button></div>
+</div>
+
+<div class="subhead">Alas</div>
+
+<div class="item" data-name="Alas 6 piezas" data-price="99">
+  <div class="item-name">6 piezas</div>
+  <div class="item-right"><b class="price">$99</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Alas 10 piezas" data-price="149">
+  <div class="item-name">10 piezas</div>
+  <div class="item-right"><b class="price">$149</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Papas" data-price="29">
+  <div class="item-name">Papas</div>
+  <div class="item-right"><b class="price">$29</b><button class="add">+</button></div>
+</div>
+
+<div class="subhead">Hamburguesas</div>
+
+<div class="item" data-name="Hamburguesa sencilla" data-price="75">
+  <div class="item-name">Sencilla</div>
+  <div class="item-right"><b class="price">$75</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Hamburguesa hawaiana" data-price="95">
+  <div class="item-name">Hawaiana</div>
+  <div class="item-right"><b class="price">$95</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Extras para hamburguesa" data-price="18">
+  <div class="item-name">Extras</div>
+  <div class="item-right"><b class="price">$18</b><button class="add">+</button></div>
+</div>
+
+<div class="subhead">Hot dogs</div>
+
+<div class="item" data-name="Hot dog clásico" data-price="35">
+  <div class="item-name">Clásico</div>
+  <div class="item-right"><b class="price">$35</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Hot dog hawaiano" data-price="50">
+  <div class="item-name">Hawaiana</div>
+  <div class="item-right"><b class="price">$50</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Extras para hot dog" data-price="12">
+  <div class="item-name">Extras</div>
+  <div class="item-right"><b class="price">$12</b><button class="add">+</button></div>
+</div>
+
+<div class="subhead">Papas fritas</div>
+
+<div class="item" data-name="Papas gajo" data-price="45">
+  <div class="item-name">Gajo</div>
+  <div class="item-right"><b class="price">$45</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Papas largas" data-price="55">
+  <div class="item-name">Largas</div>
+  <div class="item-right"><b class="price">$55</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Papas con queso" data-price="65">
+  <div class="item-name">Queso</div>
+  <div class="item-right"><b class="price">$65</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Papas especiales" data-price="75">
+  <div class="item-name">Especiales</div>
+  <div class="item-right"><b class="price">$75</b><button class="add">+</button></div>
+</div>
+
+</div>
+</section>
+
+<!-- TACOS -->
+
+<section class="section" id="tacos">
+
+<div class="section-head">
+  <h2>🌮 Tacos</h2>
+  <span>Por pieza</span>
+</div>
+
+<div class="grid">
+
+<div class="item" data-name="Taco de sudadero" data-price="15">
+  <div class="item-name">Sudadero</div>
+  <div class="item-right"><b class="price">$15</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Taco de longaniza" data-price="15">
+  <div class="item-name">Longaniza</div>
+  <div class="item-right"><b class="price">$15</b><button class="add">+</button></div>
+</div>
+
+<div class="item" data-name="Taco al pastor" data-price="15">
+  <div class="item-name">Pastor</div>
+  <div class="item-right"><b class="price">$15</b><button class="add">+</button></div>
+</div>
+
+</div>
+</section>
+
+<footer>
+  Gracias por tu preferencia 🧡 · Precios en pesos mexicanos
+</footer>
+
+</main>
+
+<!-- BARRA DEL CARRITO -->
+
+<div class="cartbar">
+
+  <div class="cart-info">
+    <strong>
+      <span id="count">0</span> productos en tu pedido
+    </strong>
+    <small>Tu selección, lista para revisar</small>
+  </div>
+
+  <div class="cart-total" id="barTotal">$0</div>
+
+  <button class="cart-open" id="openCart">
+    Ver pedido
+  </button>
+
+</div>
+
+<!-- VENTANA DEL CARRITO -->
+
+<div class="overlay" id="overlay">
+
+  <div class="drawer">
+
+    <div class="drawer-top">
+      <h3>Tu pedido 🧡</h3>
+      <button class="close" id="closeCart">×</button>
+    </div>
+
+    <div class="cart-lines" id="cartLines">
+      <div class="empty">
+        Todavía no agregas productos.
+      </div>
+    </div>
+
+    <div class="totalrow">
+      <span>Total</span>
+      <span id="drawerTotal">$0</span>
+    </div>
+
+    <button class="checkout" id="copyOrder">
+      Copiar pedido
+    </button>
+
+    <button class="clear" id="clearCart">
+      Vaciar pedido
+    </button>
+
+  </div>
+</div>
+
+<script>
+
+const cart = {};
+
+const money = n =>
+  '$' + n.toLocaleString('es-MX');
+
+const overlay = document.getElementById('overlay');
+
+/* ACTUALIZAR CARRITO */
+
+function render() {
+
+  let count = 0;
+  let total = 0;
+
+  Object.values(cart).forEach(x => {
+    count += x.qty;
+    total += x.qty * x.price;
+  });
+
+  document.getElementById('count').textContent = count;
+
+  document.getElementById('barTotal').textContent =
+    money(total);
+
+  document.getElementById('drawerTotal').textContent =
+    money(total);
+
+  const lines = document.getElementById('cartLines');
+
+  const entries = Object.entries(cart);
+
+  if (!entries.length) {
+    lines.innerHTML =
+      '<div class="empty">Todavía no agregas productos.</div>';
+    return;
+  }
+
+  lines.innerHTML = entries.map(([name, x]) => `
+    <div class="cart-line">
+      <div>
+        <b>${name}</b>
+        <div style="color:#987c68;margin-top:4px">
+          ${money(x.price)} c/u
+        </div>
+      </div>
+
+      <div class="qty">
+        <button data-act="minus" data-name="${name}">−</button>
+        <b>${x.qty}</b>
+        <button data-act="plus" data-name="${name}">+</button>
+      </div>
+    </div>
+  `).join('');
+
+}
+
+/* AGREGAR PRODUCTOS */
+
+document.querySelectorAll('.add').forEach(btn => {
+
+  btn.addEventListener('click', () => {
+
+    const el = btn.closest('.item');
+
+    const name = el.dataset.name;
+    const price = Number(el.dataset.price);
+
+    if (!cart[name]) {
+      cart[name] = {
+        price,
+        qty: 0
+      };
+    }
+
+    cart[name].qty++;
+
+    btn.textContent = '✓';
+
+    setTimeout(() => {
+      btn.textContent = '+';
+    }, 650);
+
+    render();
+
+  });
+
+});
+
+/* ABRIR Y CERRAR CARRITO */
+
+document.getElementById('openCart').onclick = () => {
+  overlay.classList.add('show');
+};
+
+document.getElementById('closeCart').onclick = () => {
+  overlay.classList.remove('show');
+};
+
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) {
+    overlay.classList.remove('show');
+  }
+});
+
+/* CAMBIAR CANTIDADES */
+
+document.getElementById('cartLines').addEventListener('click', e => {
+
+  const b = e.target.closest('button[data-act]');
+
+  if (!b) return;
+
+  const x = cart[b.dataset.name];
+
+  if (b.dataset.act === 'plus') {
+    x.qty++;
+  } else {
+    x.qty--;
+  }
+
+  if (x.qty <= 0) {
+    delete cart[b.dataset.name];
+  }
+
+  render();
+
+});
+
+/* VACIAR CARRITO */
+
+document.getElementById('clearCart').onclick = () => {
+
+  Object.keys(cart).forEach(k => delete cart[k]);
+
+  render();
+
+};
+
+/* COPIAR PEDIDO */
+
+document.getElementById('copyOrder').onclick = async () => {
+
+  const entries = Object.entries(cart);
+
+  if (!entries.length) {
+    alert('Agrega al menos un producto.');
+    return;
+  }
+
+  let total = 0;
+
+  const lines = entries.map(([n, x]) => {
+
+    total += x.qty * x.price;
+
+    return `${x.qty} x ${n} — ${money(x.qty * x.price)}`;
+
+  });
+
+  const msg =
+    'Hola, quiero hacer este pedido:\n' +
+    lines.join('\n') +
+    '\nTotal: ' + money(total);
+
+  try {
+
+    await navigator.clipboard.writeText(msg);
+
+    document.getElementById('copyOrder').textContent =
+      '¡Pedido copiado!';
+
+    setTimeout(() => {
+      document.getElementById('copyOrder').textContent =
+        'Copiar pedido';
+    }, 1800);
+
+  } catch(e) {
+
+    alert(msg);
+
+  }
+
+};
+
+/* NAVEGACIÓN ENTRE CATEGORÍAS */
+
+document.querySelectorAll('.navbtn').forEach(b => {
+
+  b.addEventListener('click', () => {
+
+    document.querySelectorAll('.navbtn')
+      .forEach(x => x.classList.remove('active'));
+
+    b.classList.add('active');
+
+    document.getElementById(b.dataset.target)
+      .scrollIntoView({
+        behavior: 'smooth'
+      });
+
+  });
+
+});
+
+/* DETECTAR SECCIÓN VISIBLE */
+
+const sections = [
+  ...document.querySelectorAll('.section')
+];
+
+window.addEventListener('scroll', () => {
+
+  let current = sections[0].id;
+
+  sections.forEach(s => {
+
+    if (s.getBoundingClientRect().top < 150) {
+      current = s.id;
+    }
+
+  });
+
+  document.querySelectorAll('.navbtn').forEach(b => {
+
+    b.classList.toggle(
+      'active',
+      b.dataset.target === current
+    );
+
+  });
+
+}, { passive: true });
+
+</script>
+
+</body>
+</html>
